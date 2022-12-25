@@ -8,7 +8,7 @@ st.title('Locations of Agriculural Fire 🔥 in Telangana')
 df = pd.read_csv('task_ff.csv')
 df = df.drop(['Unnamed: 0'],axis=1)
 
-v = df[df['cluster']==2]
+v = df[df['cluster']==0]
 l1 = list(v['District'].value_counts().index)
 l2 = []
 l3 = []
@@ -23,7 +23,7 @@ vv['longitude'] = pd.DataFrame(l3)
 vv['No_of_fire_events'] = pd.DataFrame(v['District'].value_counts().values)
 
 st.header('Which District has the most number of Agricultural Fire')
-agri_fire_events = st.slider('No. of Agricultural fires in Telangana',2,534)
+agri_fire_events = st.slider('No. of Agricultural fires in Telangana',0,1500)
 st.map(vv.query('No_of_fire_events >= @agri_fire_events')[['latitude','longitude']])
 
 if st.checkbox('Show raw data',False):
